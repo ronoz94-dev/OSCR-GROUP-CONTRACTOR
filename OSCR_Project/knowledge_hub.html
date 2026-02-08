@@ -17,7 +17,7 @@
         .border-oscr-gold { border-color: #c5a059; }
         
         /* Interactive Tabs */
-        .topic-card { transition: all 0.3s ease; cursor: pointer; border-width: 1px; }
+        .topic-card { transition: all 0.3s ease; cursor: pointer; border-width: 1px; border-color: #e2e8f0; }
         .topic-card:hover { border-color: #c5a059; background-color: #fff; }
         .active-topic { border-color: #c5a059; background-color: #fff; border-right-width: 5px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         
@@ -28,7 +28,18 @@
         
         /* Formatting */
         .term-badge { background: #f1f5f9; color: #0f172a; padding: 2px 8px; border-radius: 4px; font-weight: bold; border: 1px solid #e2e8f0; font-size: 0.9em; }
-        .content-img { width: 100%; max-width: 800px; height: auto; border-radius: 1.5rem; margin-top: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #f1f5f9; display: block; }
+        
+        /* Image Styling - Strictly Local */
+        .content-img { 
+            width: 100%; 
+            max-width: 800px; 
+            height: auto; 
+            border-radius: 1.5rem; 
+            margin-top: 1.5rem; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            border: 1px solid #f1f5f9; 
+            display: block;
+        }
         
         /* Centered Logo Branding */
         .oscr-logo-container { display: flex; flex-direction: column; align-items: center; line-height: 1; }
@@ -41,10 +52,10 @@
 </head>
 <body class="text-slate-900">
 
-    <!-- Navbar with Centered Logo -->
+    <!-- Navbar -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-        <div class="container mx-auto px-6 py-4 flex justify-center items-center">
-            <div class="oscr-logo-container logo-font">
+        <div class="container mx-auto px-6 py-4 flex justify-center items-center relative">
+            <div class="oscr-logo-container logo-font cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
                 <div class="oscr-logo-main text-oscr-navy font-black">OSCR</div>
                 <div class="oscr-logo-divider"></div>
                 <div class="oscr-logo-sub text-oscr-navy font-bold">GROUP</div>
@@ -53,241 +64,217 @@
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-12">
-        <!-- Main Title -->
+    <main class="container mx-auto px-4 py-12 text-right">
+        <!-- Header -->
         <header class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-black mb-6 text-oscr-navy italic text-center">מדריך השיפוצים והבנייה המלא</h1>
-            <div class="h-1.5 w-20 bg-oscr-gold mx-auto mb-8 rounded-full text-center"></div>
+            <h1 class="text-4xl md:text-5xl font-black mb-6 text-oscr-navy italic">מדריך השיפוצים והבנייה המלא</h1>
+            <div class="h-1.5 w-20 bg-oscr-gold mx-auto mb-8 rounded-full"></div>
             <p class="text-xl text-slate-500 max-w-3xl mx-auto font-light text-center">
                 כל הידע המקצועי של <strong>OSCR GROUP</strong> מונגש עבורכם במקום אחד.
-                בחרו נושא מהתפריט בצד כדי ללמוד על מרכיבי הבית.
             </p>
         </header>
 
-        <div class="flex flex-col lg:flex-row gap-12">
-            <!-- Sidebar Navigation -->
-            <aside class="lg:w-1/4 space-y-3">
-                <h2 class="text-[11px] font-black mb-6 text-slate-400 uppercase tracking-[0.2em] px-2 text-right">נושאי לימוד</h2>
+        <div class="flex flex-col lg:flex-row gap-12 relative">
+            <!-- Sidebar Navigation - Sticky -->
+            <aside class="lg:w-1/4 space-y-3 lg:sticky lg:top-32 lg:self-start h-fit">
+                <h2 class="text-[11px] font-black mb-6 text-slate-400 uppercase tracking-[0.2em] px-2">נושאי לימוד</h2>
                 
-                <div onclick="showContent('houses')" id="btn-houses" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 active-topic text-right">
-                    <span class="text-2xl text-right">🏠</span>
+                <div onclick="showContent('houses')" id="btn-houses" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4 active-topic">
+                    <span class="text-2xl">🏠</span>
                     <span class="font-bold text-oscr-navy">סוגי בתים</span>
                 </div>
-
-                <div onclick="showContent('roofs')" id="btn-roofs" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 text-right">
-                    <span class="text-2xl text-right">📐</span>
+                <div onclick="showContent('roofs')" id="btn-roofs" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4">
+                    <span class="text-2xl">📐</span>
                     <span class="font-bold text-oscr-navy">סוגי גגות</span>
                 </div>
-
-                <div onclick="showContent('siding')" id="btn-siding" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 text-right">
-                    <span class="text-2xl text-right">🧱</span>
+                <div onclick="showContent('siding')" id="btn-siding" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4">
+                    <span class="text-2xl">🧱</span>
                     <span class="font-bold text-oscr-navy">סוגי SIDING</span>
                 </div>
-
-                <div onclick="showContent('fascia')" id="btn-fascia" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 text-right">
-                    <span class="text-2xl text-right">💧</span>
-                    <span class="font-bold text-oscr-navy">Fascia & Gutters</span>
+                <div onclick="showContent('fascia')" id="btn-fascia" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4">
+                    <span class="text-2xl">💧</span>
+                    <span class="font-bold text-oscr-navy">רכיבי קו הגג</span>
                 </div>
-
-                <div onclick="showContent('foundations')" id="btn-foundations" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 text-right">
-                    <span class="text-2xl text-right">🏗️</span>
+                <div onclick="showContent('foundations')" id="btn-foundations" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4">
+                    <span class="text-2xl">🏗️</span>
                     <span class="font-bold text-oscr-navy">סוגי יסודות</span>
                 </div>
-
-                <div onclick="showContent('windows')" id="btn-windows" class="topic-card p-5 bg-white border-slate-200 rounded-2xl flex items-center gap-4 text-right">
-                    <span class="text-2xl text-right">🪟</span>
+                <div onclick="showContent('windows')" id="btn-windows" class="topic-card p-5 bg-white rounded-2xl flex items-center gap-4">
+                    <span class="text-2xl">🪟</span>
                     <span class="font-bold text-oscr-navy">סוגי חלונות</span>
                 </div>
             </aside>
 
-            <!-- Content Display Area -->
+            <!-- Main Display Area -->
             <section class="lg:w-3/4 bg-white rounded-[3rem] p-8 md:p-16 shadow-xl shadow-slate-200/50 border border-slate-100 min-h-[800px]">
                 
                 <!-- Topic: Houses -->
-                <div id="content-houses" class="content-section active text-right">
+                <div id="content-houses" class="content-section active">
                     <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי בתים</h2>
-                    <div class="space-y-24 text-right">
+                    <div class="space-y-24">
                         <article>
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-4 text-right">RANCH (ראנץ')</h3>
-                            <p class="prose-text italic text-right">אולי הסוג הפופולארי ביותר והאהוב ביותר, יש הרבה סוגים של בתים מסוג ראנץ, אבל הייחוד של הבתים מסוג זה הוא שיש קומה אחת, דגם זה מאוד פופולארי בקרב משפחות ואנשים מבוגרים.</p>
-                            <img src="RANCH.jpg" alt="" class="content-img">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-4">RANCH (ראנץ')</h3>
+                            <p class="prose-text">אולי הסוג הפופולארי ביותר והאהוב ביותר, יש הרבה סוגים של בתים מסוג ראנץ, אבל הייחוד של הבתים מסוג זה הוא שיש קומה אחת, דגם זה מאוד פופולארי בקרב משפחות ואנשים מבוגרים.</p>
+                            <img src="ranch.jpg" alt="RANCH House" class="content-img">
                         </article>
 
                         <article>
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-4 text-right">Bungalow / Craftsman (באנגלו)</h3>
-                            <p class="prose-text text-right text-right text-right">סוג בית זה גם נפוץ מאוד בארה"ב, בדרך כלל ישתמשו בחומרים טבעיים בבתים מסוג זה כגון: אבנים,עץ ולבנים. סימן ההיכר של סוג בית זה הוא הגג השפיצי והמרפסת הקדמית הגדולה שבדרך כלל תחובר לשני עמודים, אי אפשר לפספס את החזית של הבאנגלו. לרוב תהיה קומה אחת בבית מסוג באנגלו אך יש בתים עם שתי קומות גם.</p>
-                            <img src="Bungalow-Craftsman.jpg" alt="" class="content-img">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-4">Bungalow / Craftsman (באנגלו)</h3>
+                            <p class="prose-text">סוג בית זה גם נפוץ מאוד בארה"ב, בדרך כלל ישתמשו בחומרים טבעיים בבתים מסוג זה כגון: אבנים,עץ ולבנים. סימן ההיכר של סוג בית זה הוא הגג השפיצי והמרפסת הקדמית הגדולה שבדרך כלל תחובר לשני עמודים, אי אפשר לפספס את החזית של הבאנגלו. לרוב תיהיה קומה אחת בבית מסוג באנגלו אך יש בתים עם שתי קומות גם.</p>
+                            <img src="bungalow.jpg" alt="Bungalow House" class="content-img">
                         </article>
 
                         <article>
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-4 text-right">Cape Cod (קייפ קוד)</h3>
-                            <p class="prose-text text-right text-right text-right">מאוד קל לזהות סוג בית זה לפי ה-<span class="term-badge text-oscr-navy">DORMER</span> והגג עם השיפוע החד מאוד. הדורמר הוא החלון הקטן בקומה השניה. ברוב הבתים תהיה גם ארובה (<span class="term-badge text-oscr-navy text-right">chimney</span>) גדולה.</p>
-                            <img src="Cape Cod.jpg" alt="" class="content-img">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-4">Cape Cod (קייפ קוד)</h3>
+                            <p class="prose-text">מאוד קל לזהות סוג בית זה לפי ה-DORMER והגג עם השיפוע החד מאוד. הדורמר הוא החלון הקטן בקומה השניה. ברוב הבתים תיהיה גם ארובה (chimney) גדולה.</p>
+                            <img src="cape-cod.jpg" alt="Cape Cod House" class="content-img">
                         </article>
 
-                        <article class="bg-slate-900 p-10 rounded-[2.5rem] text-white text-right text-right">
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-6 italic logo-font text-right text-right">Victorian (ויקטוריאני)</h3>
-                            <p class="prose-text text-slate-200 mb-6 italic text-right text-right">בתים מהתקופה הויקטוריאנית 1830-1910, בתים אלו נראים ממש כמו ארמונות וכאשר הם משומרים במצב טוב הם מהממים ביופיים.</p>
-                            <div class="bg-white/10 p-6 rounded-2xl text-base border border-white/20 text-right text-right text-right text-right">
-                                <strong>המלצת OSCR GROUP:</strong> כדאי לבדוק אם הבית נמצא בשכונה לשימור. במידה וכן תהיו מוגבלים בשינויים וועדה מקומית תצטרך לאשר את השיפוץ, מה שאומר שהתהליך יהיה ארוך ויקר יותר. בהחלט לא מתאים לשיפוץ ראשון!
-                            </div>
-                            <img src="Victorian.jpg" alt="[Image of בית ויקטוריאני]" class="content-img mt-8 text-right">
+                        <article class="bg-slate-900 p-10 rounded-[2.5rem] text-white">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-6 italic logo-font">Victorian (ויקטוריאני)</h3>
+                            <p class="prose-text text-slate-200 mb-6">בתים מהתקופה הויקטוריאנית 1830-1910, בתים אלו נראים ממש כמו ארמון וכאשר הם משומרים במצב טוב הם מהממים ביופיים. כדאי לבדוק אם הבית נמצא בשכונה לשימור ואם כן יש לבדוק האם הבית עצמו הוא גם לשימור. במידה וכן עליכם לקחת בחשבון שתיהיו מאוד מוגבלים בשינויים שתוכלו לבצע בבית וועדה מקומית תצטרך לאשר את השיפוץ שלכם, מה שאומר שהתהליך יהיה ארוך יותר, יקר יותר ומומלץ לעבוד רק עם קבלן שמנוסה בשיפוץ בתים לשימור. בהחלט לא מתאים לשיפוץ ראשון :)</p>
+                            <img src="victorian.jpg" alt="Victorian House" class="content-img mt-8">
                         </article>
 
                         <article>
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-4 text-right">Contemporary / Modern (מודרני)</h3>
-                            <p class="prose-text text-right text-right text-right text-right text-right">בתים מודרנים הם בתים שנבנו בעשרות השנים האחרונות, לבתים כמובן מראה מודרני והפוקוס הוא על הפונקציונאליות של הבית לטובת דיירי הבית. החומרים בדרך כלל יהיו חסכוניים באנרגיה, חלונות גדולים כדי להכניס הרבה אור הביתה וגם נסיון להכניס את החוץ לתוך הבית. לבתים מודרנים יש קוים נקיים והם נבנים מחומרים שמחזיקים מעמד זמן רב.</p>
-                            <img src="Contemporary-Modern.jpg" alt="[Image of בית מודרני]" class="content-img">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-4">Contemporary / Modern (מודרני)</h3>
+                            <p class="prose-text">בתים מודרנים הם בתים שנבנו בעשרות השנים האחרונות, לבתים כמובן מראה מודרני והפוקוס הוא על הפונקציונאליות של הבית לטובת דיירי הבית. החומרים בדרך כלל יהיו חסכוניים באנרגיה, חלונות גדולים כדי להכניס הרבה אור הביתה וגם נסיון להכניס את החוץ לתוך הבית. לבתים מודרנים יש קוים נקיים והם נבנים מחומרים שמחזיקים מעמד זמן רב.</p>
+                            <img src="modern.jpg" alt="Modern House" class="content-img">
                         </article>
 
                         <article>
-                            <h3 class="text-2xl font-bold text-oscr-gold mb-4 text-right text-right">Colonial (קולוניאלי)</h3>
-                            <p class="prose-text text-right text-right text-right text-right text-right text-right text-right text-right">אלו בתים מרשימים ביופיים מתקופת ההתיישבות בארה"ב ויכולים להגיע עד לשנת 1600. תוכלו לזהות אותם לפי החלונות הסמטריים בחזית, לרוב יהיו מספר דורמרס ועמודים בכניסה לבית. בדרך כלל אלו בתים גדולים מאוד.</p>
-                            <img src="Colonial.jpg" alt="" class="content-img">
+                            <h3 class="text-2xl font-bold text-oscr-gold mb-4">Colonial (קולוניאלי)</h3>
+                            <p class="prose-text">אלו בתים מרשימים ביופיים מתקופת ההתיישבות בארה"ב ויכולים להגיע עד לשנת 1600. תוכלו לזהות אותם לפי החלונות הסמטריים בחזית, לרוב יהיו מספר דורמרס ועמודים בכניסה לבית. בדרך כלל אלו יהיו בתים גדולים מאוד.</p>
+                            <img src="colonial.jpg" alt="Colonial House" class="content-img">
                         </article>
                     </div>
                 </div>
 
-                <!-- Topic: Roofs -->
-                <div id="content-roofs" class="content-section text-right text-right text-right">
-                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6 text-right">סוגי גגות</h2>
-                    <div class="space-y-20 text-right">
-                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100 text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic text-right text-right">Asphalt shingles (גג אספלט)</h3>
-                            <p class="prose-text text-base text-right text-right text-right">הסוג הנפוץ ביותר בבתי מגורים בארה"ב. הסיבה שזה הגג הנפוץ ביותר היא שהוא זול ואורך החיים שלו הוא 15-20 שנה. כפי שאמר הקבלן בסרטון, גג מסוג זה "צפוי" להחזיק מעמד כ-30 שנה, אך בפועל הוא יחזיק קרוב יותר ל-15 שנים.</p>
-                            <img src="Asphalt shingles.jpg" alt="" class="content-img">
+                <!-- סוגי גגות -->
+                <div id="content-roofs" class="content-section">
+                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי גגות</h2>
+                    <div class="space-y-20">
+                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic">Asphalt shingles (גג אספלט)</h3>
+                            <p class="prose-text text-base">הסוג הנפוץ ביותר בבתי מגורים בארה"ב והגג שבדוגמה בסרטון זה. הסיבה שזה הגג הנפוץ ביותר היא שהוא זול ואורך החיים שלו הוא 15-20 שנה. כפי שאמר הקבלן בסרטון, גג מסוג זה "צפוי" להחזיק מעמד כ-30 שנה, אך בפועל הוא יחזיק קרוב יותר ל-15 שנים, כתלות באזור, תנאי מזג אויר ותחזוקה שתבוצע לגג במידת הצורך.</p>
+                            <img src="asphalt.jpg" alt="Asphalt Shingles" class="content-img">
                         </section>
 
-                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100 text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic text-right text-right text-right">Ceramic Roofing Tiles (רעפים)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right">גג רעפים, מוסיף הרבה אופי לבית אבל קחו חשבון שלמרות שהוא עמיד יותר מגג אספלט "רגיל", גג רעפים צפוי להחזיק 50-70 שנה, הוא גם שביר יותר ולכן אינו מתאים לאזורים עם מזג אויר משתנה ובמיוחד אינו מתאים לאזורים עם תנאי מזג קשים שבהם יש סופות.</p>
-                            <img src="Ceramic Roofing Tiles.jpg" alt="" class="content-img">
+                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic">Ceramic Roofing Tiles (רעפים)</h3>
+                            <p class="prose-text text-base">גג רעפים, מוסיף הרבה אופי לבית אבל קחו חשבון שלמרות שהוא עמיד יותר מגג אספלט "רגיל" , גג רעפים צפוי להחזיק 50-70 שנה, הוא גם שביר יותר ולכן אינו מתאים לאזורים עם מזג אויר משתנה ובמיוחד אינו מתאים לאזורים עם תנאי מזג קשים שבהם יש סופות.</p>
+                            <img src="ceramic.jpg" alt="Ceramic Tiles" class="content-img">
                         </section>
 
-                        <section class="p-8 bg-white border-2 border-oscr-gold rounded-3xl shadow-lg text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-gold mb-4 italic text-right text-right text-right text-right text-right">Slate Roof Tiles (סלייט)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right text-right text-right">אם אתם משפצים / בונים בית יוקרתי יכול להיות שתרצו להשתמש בחומר זה, סלייט רוף יכול להחזיק גם 100 שנה והוא מאוד יפה, אבל קחו בחשבון שהוא מאוד יקר, כבד מאוד, ונשבר בקלות שדורכים עליו.</p>
-                            <img src="Slate Roof Tiles.jpg" alt="" class="content-img">
+                        <section class="p-8 bg-white border-2 border-oscr-gold rounded-3xl shadow-lg">
+                            <h3 class="text-xl font-bold text-oscr-gold mb-4 italic">Slate Roof Tiles (סלייט)</h3>
+                            <p class="prose-text text-base">אם אתם משפצים / בונים בית יוקרתי יכול להיות שתרצו להשתמש בחומר זה, סלייט רוף יכול להחזיק גם 100 שנה והוא מאוד יפה, אבל קחו בחשבון שהוא מאוד יקר ביחס לגג "רגיל" כמו האספלט, הוא מאוד כבד, נשבר בקלות שדורכים עליו, ההתקנה שלו גם תיהיה יקרה ותיהיה חייבת להתבצע על ידי מתקין מנוסה בהתקנת גגות מסוג זה בלבד.</p>
+                            <img src="slate.jpg" alt="Slate Tiles" class="content-img">
                         </section>
 
-                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100 text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic text-right text-right text-right text-right">Flat Roof / Rubber Roof (גג שטוח)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right text-right text-right text-right">פחות נפוץ בבתים פרטים, תוכלו לראות אותו בעיקר בגגות שטוחים בדופלקסים או פורפלקסים. הגג יחסית יקר ויכול להחזיק עד 50 שנה. תחזוקה מאוד נמוכה וייצור הגג הוא אקולוגי לסביבה ולרוב יכיל גומי ממוחזר.</p>
-                            <img src="Flat Roof-Rubber Roof.jpg" alt="" class="content-img">
+                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic">Flat Roof / Rubber Roof (גג שטוח)</h3>
+                            <p class="prose-text text-base">גג שטוח או גג גומי, פחות נפוץ בבתים פרטים , תוכלו לראות אותו בעיקר בגגות שטוחים בדופלקים (2 יחידות) או פורפלקסים (4 יחידות). הגג יחסית יקר ויכול להחזיק עד 50 שנה. תיקונים מאוד מהירים וזולים, תחזוקה מאוד נמוכה וייצור הגג הוא אקולוגי לסביבה ולרוב יכיל גומי ממוחזר.</p>
+                            <img src="flat-roof.jpg" alt="Flat Roof" class="content-img">
                         </section>
 
-                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100 text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic text-right text-right text-right text-right text-right text-right">Metal Roofing (גג מתכת)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right text-right text-right text-right text-right">מחזיק בין 40-70 שנה. עמיד לסופות, קל תחזוקה, לא מתלקח בשריפה, גג מתכת הוא ירוק ויכול להוזיל עלויות קירור ב-10-25 אחוז. עם זאת, הוא מרעיש ויכול לעלות פי 3 מגג אספלט.</p>
-                            <img src="Metal Roofing.jpg" alt="" class="content-img">
+                        <section class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic">Metal Roofing (גג מתכת)</h3>
+                            <p class="prose-text text-base">גג מתכת - מחזיק בין 40-70 שנה. עמיד לסופות, קל תחזוקה, לא מתלקח בשריפה, גג מתכת הוא ירוק ויכול להוזיל עלויות קירור באזורים חמים ב-10-25 אחוז ומפני שניתן למחזר את הגג הוא גם ירוק לסביבה וניתן לצבוע אותו במקום להחליף אותו. עם זאת, גג מתכת יכול לעלות עד פי 3 מגג אספלט, הוא מרעיש, באיזורים עם מזג אויר משתנה יש לקחת בחשבון הרחבות והתכווצות של החומר ובמקרה של תיקון יש לקחת בחשבון שהתיקון יהיה בצבע אחר (אבל זה נכון לכל סוגי הגגות).</p>
+                            <img src="metal.jpg" alt="Metal Roofing" class="content-img">
                         </section>
                     </div>
                 </div>
 
-                <!-- Topic: Siding -->
-                <div id="content-siding" class="content-section text-right text-right text-right">
-                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6 text-right">סוגי SIDING</h2>
-                    <div class="space-y-16 text-right">
+                <!-- SIDING -->
+                <div id="content-siding" class="content-section">
+                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי SIDING</h2>
+                    <div class="space-y-16">
                         <article>
-                            <h3 class="text-xl font-bold text-oscr-gold mb-4 text-right">Vinyl (וייניל)</h3>
-                            <p class="prose-text text-base text-right text-right">סוג זה מאוד פופולארי מפני שהוא זול, עמיד לאורך זמן וקל לתחזוקה. אם הנכס נראה רע עם ירוקת או עובש, לרוב הם ירדו בשטיפה בלחץ גבוה והחוץ יראה כמו חדש בעלות של מספר מאות דולרים בלבד. זה סוג של פלסטיק, קל להרכבה ויש היום הרבה דגמים כולל דמוי עץ.</p>
-                            <img src="Vinyl.jpg" alt="" class="content-img">
+                            <h3 class="text-xl font-bold text-oscr-gold mb-4">Vinyl (וייניל)</h3>
+                            <p class="prose-text text-base">סוג זה מאוד פופולארי מפני שהוא זול, עמיד לאורך זמן וקל לתחזוקה. ייתכן ותבדקו נכס עם סוג סיידינג וייניל ובתמונה הוא יראה לכם במצב נורא, עם ירוקת ולעיתים כתמים שחורים (עובש), לרוב הם ירדו בשטיפה בלחץ גבוה והחוץ יראה כמו חדש בעלות של מספר מאות דולרים בלבד. זה סוג של פלסטיק, קל מאוד להרכיב אותו ומכיוון שזה חומר סינטטי יש היום הרבה דגמים של סוג זה כולל דמוי עץ.</p>
+                            <img src="vinyl.jpg" alt="Vinyl Siding" class="content-img">
                         </article>
                         <article>
-                            <h3 class="text-xl font-bold text-oscr-gold mb-4 text-right text-right text-right">Wood (עץ)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right">חיפוי עץ לבית יכול להיראות מאוד יפה וטבעי, אך קחו בחשבון שעץ באיכות גבוהה יהיה מאוד יקר, יש לתחזק סיידינג מסוג עץ אחת לשנה שנתיים, לשייף ולצבוע צבע שהתקלף.</p>
-                            <img src="Wood.jpg" alt="" class="content-img">
+                            <h3 class="text-xl font-bold text-oscr-gold mb-4">Wood (עץ)</h3>
+                            <p class="prose-text text-base">חיפוי עץ לבית יכול להיראות מאוד יפה וטבעי, אך קחו בחשבון שעץ באיכות גבוהה יהיה מאוד יקר, יש לתחזק סיידינג מסוג עץ אחת לשנה שנתיים, לשייף ולצבוע צבע שהתקלף.</p>
+                            <img src="wood.jpg" alt="Wood Siding" class="content-img">
                         </article>
                         <article>
-                            <h3 class="text-xl font-bold text-oscr-gold mb-4 text-right text-right text-right text-right">Stucco (סטאקו)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right text-right">שליכט מבודד אשר מכיל אפוקסי. סטאקו נראה מאוד יפה, במיוחד למי שאוהב קוים נקיים והוא יכול להחזיק המון שנים בטיפול נכון באזורים יבשים. פחות מומלץ להשתמש בסטאקו באזורים עם הרבה גשם.</p>
-                            <img src="Stucco.jpg" alt="" class="content-img">
+                            <h3 class="text-xl font-bold text-oscr-gold mb-4">Stucco (סטאקו)</h3>
+                            <p class="prose-text text-base">שליכט מבודד אשר מכיל אפוקסי. סטאקו נראה מאוד יפה, במיוחד למי שאוהב קוים נקיים והוא יכול להחזיק המון שנים בטיפול נכון, כל זה נכון לאזורים יבשים. פחות מומלץ להשתמש בסטאקו באזורים עם הרבה גשם, למרות שהתקנה נכונה הוא יכול להחזיק מעמד זמן רב.</p>
+                            <img src="stucco.jpg" alt="Stucco Siding" class="content-img">
                         </article>
                         <article>
-                            <h3 class="text-xl font-bold text-oscr-gold mb-4 text-right text-right text-right text-right text-right">Masonry Brick (לבנים)</h3>
-                            <p class="prose-text text-base font-bold text-right text-right text-right text-right text-right text-right text-right text-right">קל מאוד לזהות את הבתים עם הלבנים האדומות. לבנים קלים לתחזוקה, מחזיקים מעמד בדרך כלל לאורך כל חיי הבית. סוג זה נחשב יקר יותר גם מבחינת עלות החומר וגם מבחינת עלות העבודה.</p>
-                            <img src="Masonry Brick.jpg" alt="" class="content-img">
+                            <h3 class="text-xl font-bold text-oscr-gold mb-4">Masonry Brick (לבנים)</h3>
+                            <p class="prose-text text-base font-bold">קל מאוד לזהות את הבתים עם הלבנים האדומות (בדרך כלל יהיו בצבע אדום). לבנים קלים לתחזוקה, מחזיקים מעמד בדרך כלל לאורך כל חיי הבית, ניתן לצבוע אותם במידה ויש תיקונים שלא נראים טוב. סוג זה נחשב יקר יותר כמובן מהסוגים האחרים גם מבחינת עלות החומר וגם מבחינת עלות העבודה. כדאי לבדוק עם מתווך מקומי מה מעדיפים קונים בשכונה ספיצית האם בריק או וייניל, לעיתים יכול להיות משמעותי בשכונות מסויימות.</p>
+                            <img src="brick.jpg" alt="Brick Siding" class="content-img">
                         </article>
                     </div>
                 </div>
 
-                <!-- Topic: Fascia -->
-                <div id="content-fascia" class="content-section text-right text-right text-right">
-                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6 text-right">Fascia, Soffit & Gutter</h2>
-                    
-                    <div class="grid gap-6 text-right">
-                        <div class="p-6 bg-slate-50 rounded-2xl flex flex-col gap-4 text-right">
-                            <div class="flex items-center gap-6 text-right">
-                                <div class="w-1/4 font-black text-oscr-gold text-lg logo-font text-right">FASCIA</div>
-                                <div class="w-3/4 prose-text text-base text-right">החלק שפונה החוצה ומקביל לקיר החיצוני של הבית.</div>
-                            </div>
+                <!-- Fascia & Gutters -->
+                <div id="content-fascia" class="content-section">
+                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי רכיבי קו הגג</h2>
+                    <div class="grid gap-6">
+                        <div class="p-6 bg-slate-50 rounded-2xl">
+                            <h4 class="font-black text-oscr-gold text-lg mb-2">FASICIA</h4>
+                            <p class="prose-text text-base">החלק שפונה החוצה ומקביל לקיר החיצוני של הבית</p>
                         </div>
-                        <div class="p-6 bg-slate-50 rounded-2xl flex flex-col gap-4 text-right">
-                            <div class="flex items-center gap-6 text-right text-right">
-                                <div class="w-1/4 font-black text-oscr-gold text-lg logo-font text-right">SOFFIT</div>
-                                <div class="w-3/4 prose-text text-base text-right">החלק התחתון ופונה כלפי הרצפה, חלק זה יהיה מאוורר.</div>
-                            </div>
+                        <div class="p-6 bg-slate-50 rounded-2xl">
+                            <h4 class="font-black text-oscr-gold text-lg mb-2">SOFFIT</h4>
+                            <p class="prose-text text-base">החלק התחתון ופונה כלפי הרצפה, חלק זה יהיה מאוורר</p>
                         </div>
-                        <div class="p-6 bg-slate-50 rounded-2xl flex flex-col gap-4 text-right">
-                            <div class="flex items-center gap-6 text-right text-right text-right">
-                                <div class="w-1/4 font-black text-oscr-gold text-lg logo-font text-right">GUTTER</div>
-                                <div class="w-3/4 prose-text text-base text-right">המרזב שאוגר את מי הגשם מהגג, לרוב יהיה אלומניום.</div>
-                            </div>
-                            <!-- Image moved here under Gutter description as requested -->
-                            <img src="Fascia, Soffit & Gutter.jpg" alt="" class="content-img mx-auto">
+                        <div class="p-6 bg-slate-50 rounded-2xl">
+                            <h4 class="font-black text-oscr-gold text-lg mb-2">GUTTER</h4>
+                            <p class="prose-text text-base">המרזב שאוגר את מי הגשם מהגג, לרוב יהיה אלומניום</p>
+                            <img src="fascia-soffit.jpg" alt="Gutter" class="content-img mx-auto">
                         </div>
-                        <div class="p-6 bg-slate-50 rounded-2xl flex flex-col gap-4 border-2 border-oscr-gold text-right">
-                            <div class="flex items-center gap-6 text-right text-right text-right text-right text-right text-right text-right text-right text-right">
-                                <div class="w-1/4 font-black text-oscr-gold text-lg logo-font text-right text-right text-right text-right text-right">DOWNSPOUT</div>
-                                <div class="w-3/4 prose-text text-base text-right text-right text-right text-right text-right text-right text-right text-right text-right">מתחבר למרזב ומוריד המים לקרקע. יכול להתחבר ישירות לצינור הניקוז או לצינור מאריך כדי להרחיק מים מהיסודות.</div>
-                            </div>
-                            <img src="DOWNSPOUT.jpg" alt="" class="content-img mx-auto">
+                        <div class="p-6 bg-slate-50 rounded-2xl border-2 border-oscr-gold">
+                            <h4 class="font-black text-oscr-gold text-lg mb-2">DOWNSPOUT</h4>
+                            <p class="prose-text text-base">מתחבר למרזב ומוריד המים לקרקע. יכול להתחבר ישירות לצינור הניקוז שהולך לרחוב או לצינור מאריך כדי שהמים יצאו רחוק מהיסודות.</p>
+                            <img src="downspout.jpg" alt="Downspout" class="content-img mx-auto">
                         </div>
                     </div>
                 </div>
 
-                <!-- Topic: Foundations -->
-                <div id="content-foundations" class="content-section text-right text-right text-right">
-                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6 text-right">סוגי יסודות</h2>
-                    <div class="space-y-12 text-right">
-                        <article class="p-8 border-r-8 border-oscr-navy bg-slate-50 rounded-l-3xl text-right text-right">
-                            <h3 class="text-2xl font-bold mb-4 text-right text-right">Concrete slab (משטח בטון)</h3>
-                            <p class="prose-text text-right text-right text-right text-right">בבתים עם יסודות מסוג SLAB אין מרתף. הבית יושב על משטח בטון יצוק, שהוא הבסיס לבית. למעשה רק הצנרת מחוברת למשטח היסודות ומכאן גם החסרון הגדול: קשה מאוד לתקן נזילות. סוג זה פופולארי בבניה חדשה כי הוא זול ומהיר ואין סיכוי לעובש מתחת לבית.</p>
-                            <img src="Concrete slab.jpg" alt="" class="content-img">
+                <!-- יסודות -->
+                <div id="content-foundations" class="content-section">
+                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי יסודות</h2>
+                    <div class="space-y-12">
+                        <article>
+                            <h3 class="text-2xl font-bold mb-4">Concrete slab (משטח בטון)</h3>
+                            <p class="prose-text">בבתים עם יסודות מסוג SLAB אין מרתף. הבית יושב על משטח בטון יצוק, שהוא הבסיס לבית. למעשה רק הצנרת מחוברת למשטח היסודות ומכאן גם החסרון הגדול של סוג זה, קשה מאוד לתקן נזילות. סוג זה מאוד פופולארי בבניה חדשה מפני שהוא זול, מהיר לביצוע ואין אויר בין היסודות לבית ולכן יורד משמעותית הסיכוי לעובש.</p>
+                            <img src="slab.jpg" alt="Slab" class="content-img">
                         </article>
-
-                        <article class="p-8 border-r-8 border-oscr-gold bg-slate-50 rounded-l-3xl text-right text-right text-right">
-                            <h3 class="text-2xl font-bold mb-4 text-right text-right text-right">Basement Foundation (מרתף)</h3>
-                            <p class="prose-text mb-6 italic text-right text-right text-right text-right">מרתף חפור נותן בסיס טוב יותר לבית והוא נחפר לעומק של 8 רגל מתחת לגובה הבית. אם המרתף גמור (FINISHED) הוא משמש כשטח מגורים נוסף.</p>
-                            <img src="Basement Foundation.jpg" alt="" class="content-img mb-8">
-                            <div class="bg-oscr-navy text-white p-10 rounded-[2.5rem] shadow-2xl text-right text-right text-right text-right text-right text-right">
-                                <h4 class="font-bold text-oscr-gold mb-4 text-xl logo-font italic text-right text-right text-right text-right">🚩 פתח מילוט (EGRESS) - קריטי!</h4>
-                                <p class="text-base opacity-90 leading-relaxed mb-6 text-right text-right text-right text-right text-right text-right text-right">כדי שהמרתף יחשב ל-SQFT של הבית חייב להיות פתח מילוט בכל חדר במרתף.</p>
-                                <img src="Egress.jpg" alt="" class="content-img opacity-100 border-none shadow-none mb-6">
-                                <ul class="space-y-2 text-sm text-slate-300 text-right text-right text-right text-right">
-                                    <li>• חלון עומד: 28X30 אינץ'</li>
-                                    <li>• חלון שוכב: 20X24 אינץ'</li>
-                                </ul>
+                        <article>
+                            <h3 class="text-2xl font-bold mb-4 text-oscr-navy">Basement Foundation (מרתף)</h3>
+                            <p class="prose-text mb-6">מרתף חפור נותן בסיס טוב יותר לבית והוא נחפר לעומק של 8 רגל מתחת לגובה הבית. בנוסף, הרבה בעלי בתים אוהבים את העובדה שיש להם מרתף בבית, אם הוא לא גמור (כלומר לא ראוי למגורים) הוא משמש כשטח אחסון מעולה. ואם המרתף גמור (FINISHED) הוא משמש כשטח מגורים נוסף.</p>
+                            <img src="basement.jpg" alt="Basement" class="content-img">
+                            <div class="bg-oscr-navy text-white p-10 rounded-[2.5rem] shadow-2xl mt-8">
+                                <h4 class="font-bold text-oscr-gold mb-4 text-xl italic">🚩 פתח מילוט (EGRESS) - קריטי!</h4>
+                                <p class="text-base opacity-90 leading-relaxed mb-6">כדי שהמרתף יחשב ל-SQFT של הבית חייב להיות פתח מילוט (EGRESS) בכל חדר במרתף, במידה ויש חדרים בגודל של 28X30 אינצ' אם זה חלון עומד ו-20X24 אינצ' אם זה חלון שוכב.</p>
+                                <img src="egress.jpg" alt="Egress" class="content-img opacity-100">
                             </div>
                         </article>
                     </div>
                 </div>
 
-                <!-- Topic: Windows -->
-                <div id="content-windows" class="content-section text-right text-right text-right">
-                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6 text-oscr-navy text-right">סוגי חלונות</h2>
-                    <div class="space-y-10 text-right">
-                        <div class="p-8 border rounded-3xl bg-slate-50 border-slate-200 opacity-80 text-right text-right text-right text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-slate-800 mb-4 text-right text-right text-right text-right">חלונות עץ (ישנים)</h3>
-                            <p class="prose-text text-base italic text-right text-right text-right text-right text-right text-right text-right">מסגרות עץ שלרוב כבר רקובות חלקית. דורשים תחזוקה שנתית כבדה של קילוף וצביעה. הבידוד גרוע מאוד וברוב המקרים זו זכוכית אחת או פלסטיק וקשה מאוד להזיז אותם.</p>
+                <!-- חלונות -->
+                <div id="content-windows" class="content-section">
+                    <h2 class="text-4xl font-black mb-12 text-oscr-navy border-b pb-6">סוגי חלונות</h2>
+                    <div class="space-y-10">
+                        <div class="p-8 border rounded-3xl bg-slate-50">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">חלונות עץ (ישנים)</h3>
+                            <p class="prose-text text-base italic">הכוונה לחלונות עץ ישנים. אלו חלונות עם מסגרת עץ שככול הנראה רקובה חלקית מפני שאלו חלונות מאוד ישנים, יש לתחזק אותם על בסיס שנתי, קילוף הצבע הישן, שייוף וצביעה מחדש. חלונות אלה מחוברים לזכוכית אחת שברוב המקרים לא תיהיה בכלל זכוכית אלה סוג של פלסטיק. הבידוד מאוד גרוע בחלונות האלה ולרוב קשה מאוד להזיז אותם.</p>
                         </div>
-                        <div class="p-8 border rounded-3xl bg-slate-50 border-slate-200 text-right text-right text-right text-right text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-slate-800 mb-4 text-right text-right text-right text-right text-right text-right text-right text-right text-right">חלונות אלומיניום (ישנים)</h3>
-                            <p class="prose-text text-base text-right text-right text-right text-right text-right text-right text-right text-right">גם כאן הכוונה לחלונות ישנים עם זכוכית אחת. אם מדובר בנכס להשכרה (Rental) והם במצב טוב, שווה לשקול להשאיר אותם.</p>
+                        <div class="p-8 border rounded-3xl bg-slate-50">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">חלונות אלומניום (ישנים)</h3>
+                            <p class="prose-text text-base italic">גם כאן הכוונה לחלונות ישנים עם זכוכית אחת, חלונות אלה יכולים להיות במצב טוב ואם זה רנטל, שווה לשקול להשאיר אותם.</p>
                         </div>
-                        <div class="p-8 border-2 border-oscr-gold bg-white rounded-3xl shadow-xl text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right">
-                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic text-right text-right text-right text-right text-right text-right text-right text-right">חלונות Vinyl (וייניל) - המלצה למשפץ</h3>
-                            <p class="prose-text text-base font-medium text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right">חלונות חדשים עם זכוכית כפולה לבידוד טוב יותר. קלים לתפעול, ללא תחזוקה ופופולאריים מאוד בבתים עד שווי של $300,000. יש להתאים את רמת האיכות לשווי הבית.</p>
+                        <div class="p-8 border-2 border-oscr-gold bg-white rounded-3xl shadow-xl">
+                            <h3 class="text-xl font-bold text-oscr-navy mb-4 italic">חלונות Vinyl (וייניל) - מומלץ</h3>
+                            <p class="prose-text text-base font-medium">חלונות חדשים יחסית, עם זכוכית כפולה ולכן יש בידוד טוב יותר. כמובן שקל יותר לתפעל אותם וכמעט שאין תחזוקה לחלונות אלו. אלו חלונות מאוד פופולארים בבתים עד שווי של $300,000. יש מספר רמות איכות ותצטרכו להתאים את רמת האיכות של חלונות הוייניל לשווי הבית.</p>
                         </div>
                     </div>
                 </div>
@@ -296,43 +283,24 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="mt-24 py-20 bg-oscr-navy text-white text-center">
-        <div class="container mx-auto px-6 flex flex-col items-center text-center">
-            <div class="oscr-logo-container logo-font mb-10 text-center">
-                <div class="oscr-logo-main text-white font-black text-5xl">OSCR</div>
-                <div class="oscr-logo-divider w-40 text-center"></div>
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            <div class="oscr-logo-container logo-font cursor-pointer mb-10 text-center" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <div class="oscr-logo-main font-black text-5xl">OSCR</div>
+                <div class="oscr-logo-divider w-40"></div>
                 <div class="oscr-logo-sub text-oscr-gold font-bold text-base tracking-[0.4em]">GROUP</div>
             </div>
-            <p class="text-slate-400 text-base max-w-md mx-auto font-light leading-relaxed text-center text-center text-center">מובילים בסטנדרטים של איכות, מקצועיות ושקיפות בעולם השיפוצים והבנייה.</p>
-            <div class="mt-12 text-[10px] text-slate-500 font-bold uppercase tracking-[0.4em] text-center text-center text-center">© 2024 OSCR GROUP • כל הזכויות שמורות</div>
+            <p class="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">© 2024 OSCR GROUP • כל הזכויות שמורות</p>
         </div>
     </footer>
 
     <script>
         function showContent(topicId) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            // Reset all sidebar buttons
-            document.querySelectorAll('.topic-card').forEach(card => {
-                card.classList.remove('active-topic');
-            });
-
-            // Activate chosen section
-            const targetContent = document.getElementById('content-' + topicId);
-            if (targetContent) targetContent.classList.add('active');
-
-            // Highlight chosen sidebar button
-            const targetBtn = document.getElementById('btn-' + topicId);
-            if (targetBtn) targetBtn.classList.add('active-topic');
-            
-            // Scroll to top of content on mobile
-            if (window.innerWidth < 1024) {
-                const mainContent = document.querySelector('section.lg\\:w-3\\/4');
-                mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active-topic'));
+            document.getElementById('content-' + topicId).classList.add('active');
+            document.getElementById('btn-' + topicId).classList.add('active-topic');
+            if (window.innerWidth < 1024) document.querySelector('section.lg\\:w-3\\/4').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
